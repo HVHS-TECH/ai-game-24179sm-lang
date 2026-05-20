@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flappy Bird Clone</title>
+  <title>Flappy Bird</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
     }
 
     body {
+      background: #70c5ce;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(to bottom, #70c5ce, #ffffff);
       overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
     canvas {
       border: 4px solid #222;
-      background: #87CEEB;
-      border-radius: 12px;
+      background: linear-gradient(#70c5ce, #ffffff);
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -34,45 +34,40 @@
 <canvas id="gameCanvas" width="400" height="600"></canvas>
 
 <script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
-  // =========================
-  // Bird
-  // =========================
-  const bird = {
-    x: 80,
-    y: 200,
-    width: 35,
-    height: 35,
-    velocity: 0,
-    gravity: 0.5,
-    jump: -8
-  };
+// =========================
+// GAME SETTINGS
+// =========================
+const gravity = 0.45;
+const jumpForce = -8;
+const pipeWidth = 70;
+const pipeGap = 170;
+const pipeSpeed = 2.5;
 
-  // =========================
-  // Pipes
-  // =========================
-  let pipes = [];
-  const pipeWidth = 60;
-  const pipeGap = 150;
-  const pipeSpeed = 2;
+// =========================
+// BIRD
+// =========================
+const bird = {
+  x: 90,
+  y: 250,
+  width: 40,
+  height: 40,
+  velocity: 0
+};
 
-  // =========================
-  // Game State
-  // =========================
-  let score = 0;
-  let gameOver = false;
-  let frame = 0;
+// =========================
+// GAME STATE
+// =========================
+let pipes = [];
+let score = 0;
+let started = false;
+let gameOver = false;
+let frame = 0;
 
-  // =========================
-  // Controls
-  // =========================
-  document.addEventListener("keydown", (e) => {
-    if (e.code === "Space") {
-      if (gameOver) {
-        resetGame();
-      } else {
-        bird.velocity = bird.jump;
-      }
+// =========================
+// INPUT
+// =========================
+function flap() {
 </html>
